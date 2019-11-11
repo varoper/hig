@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dropdown/presenters/WrapperPresenter renders with all props 1`] = `
+.emotion-0 {
+  position: relative;
+  width: 100%;
+}
+
+<div
+  className="emotion-0"
+>
+  <p>
+    hi
+  </p>
+</div>
+`;
+
+exports[`Dropdown/presenters/WrapperPresenter renders without props 1`] = `
+.emotion-0 {
+  position: relative;
+  width: 100%;
+}
+
+<div
+  className="emotion-0"
+/>
+`;
