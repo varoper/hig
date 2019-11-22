@@ -4,7 +4,7 @@ import Downshift from "downshift";
 import { cx } from "emotion";
 import MultiDownshift from "@hig/multi-downshift";
 
-import InputPresenter from "./presenters/InputPresenter";
+// import InputPresenter from "./presenters/InputPresenter";
 import MenuPresenter from "./presenters/MenuPresenter";
 import renderWrapper from "./presenters/WrapperPresenter";
 import renderOptions from "./presenters/renderOptions";
@@ -49,6 +49,7 @@ export default class Dropdown extends Component {
     /**
      * Called with the selected option when the value changes
      */
+    onClick: PropTypes.func,
     onChange: PropTypes.func,
     /**
      * Called when the text field is focused
@@ -165,53 +166,12 @@ export default class Dropdown extends Component {
    * @param {DownshiftHelpers} downshift
    * @returns {JSX.Element}
    */
-  renderInput(downshift) {
-    const { id, isOpen, toggleMenu, getInputProps } = downshift;
-    const {
-      placeholder,
-      disabled,
-      required,
-      onBlur,
-      onFocus,
-      variant,
-      error,
-      ...otherProps
-    } = this.props;
-
-    const { className } = otherProps;
-    const inputClassName =
-      className &&
-      className
-        .split(" ")
-        .reduce((acc, cur) => cx(acc, `${cur.trim()}-input-wrapper`), "");
-
-    const inputProps = getInputProps({
-      id,
-      error,
-      placeholder,
-      disabled,
-      isOpen,
-      required,
-      onBlur,
-      onFocus,
-      onClick: toggleMenu,
-      variant,
-      className: inputClassName
-    });
-
-    return <InputPresenter key="input" {...inputProps} />;
-  }
-
-  /**
-   * @param {DownshiftHelpers} downshift
-   * @returns {JSX.Element}
-   */
   renderMenu(downshift) {
     const {
       getItemProps,
       getMenuProps,
       highlightedIndex,
-      isOpen,
+      // isOpen,
       selectedItem,
       selectedItems
     } = downshift;
@@ -233,7 +193,7 @@ export default class Dropdown extends Component {
         .reduce((acc, cur) => cx(acc, `${cur.trim()}-menu-wrapper`), "");
 
     const menuProps = getMenuProps({
-      isOpen,
+      isOpen: true,
       refKey: "innerRef",
       className: menuClassName
     });
@@ -270,6 +230,7 @@ export default class Dropdown extends Component {
       multiple,
       onBlur,
       onChange,
+      onClick,
       onFocus,
       options,
       placeholder,
@@ -288,7 +249,7 @@ export default class Dropdown extends Component {
      */
     return renderWrapper({
       disabled,
-      children: [this.renderInput(downshift), this.renderMenu(downshift)],
+      children: [this.renderMenu(downshift)],
       ...otherProps
     });
   };
