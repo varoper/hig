@@ -12,8 +12,6 @@ import renderOptions from "./presenters/renderOptions";
 /** @typedef {import("./presenters/renderOptions").OptionMeta} OptionMeta */
 /** @typedef {import("downshift").ControllerStateAndHelpers} DownshiftHelpers */
 
-const variantTypes = ["line", "box"];
-
 export default class Dropdown extends Component {
   static propTypes = {
     /**
@@ -23,10 +21,6 @@ export default class Dropdown extends Component {
       PropTypes.any,
       PropTypes.arrayOf(PropTypes.any)
     ]),
-    /**
-     * Prevents user actions on the field
-     */
-    disabled: PropTypes.bool,
     /**
      * Used to format options into human readable strings
      *
@@ -49,7 +43,6 @@ export default class Dropdown extends Component {
     /**
      * Called with the selected option when the value changes
      */
-    onClick: PropTypes.func,
     onChange: PropTypes.func,
     /**
      * Called when the text field is focused
@@ -60,11 +53,8 @@ export default class Dropdown extends Component {
      * If you use an array of objects, the object must contain the property `item`,
      * the option's disabled state can be controlled with a `disabled` property.
      */
+    onOptionClick: PropTypes.func,
     options: PropTypes.arrayOf(PropTypes.any),
-    /**
-     * Placeholder text to render when an option has not been selected
-     */
-    placeholder: PropTypes.string,
     /**
      * When present, this function is used to render each option.  Each
      * option is passed as an argument. If any option has Option.render
@@ -80,24 +70,12 @@ export default class Dropdown extends Component {
      */
     renderOption: PropTypes.func,
     /**
-     * Text describing why the field is required
-     */
-    required: PropTypes.string,
-    /**
      * An array of objects to choose from
      */
     value: PropTypes.oneOfType([
       PropTypes.any,
       PropTypes.arrayOf(PropTypes.any)
     ]),
-    /**
-     * The visual variant of the textarea
-     */
-    variant: PropTypes.oneOf(variantTypes),
-    /**
-     * Specifies if the value provided is wrong
-     */
-    error: PropTypes.bool
   };
 
   static defaultProps = {
@@ -122,27 +100,8 @@ export default class Dropdown extends Component {
       onChange: this.handleChange,
       itemToString: formatOption,
       [valuePropName]: value,
-      [defaultValuePropName]: defaultValue,
-      inputValue: this.getInputValue()
+      [defaultValuePropName]: defaultValue
     };
-  }
-
-  /**
-   * The controlled value for the input element
-   * @see https://github.com/paypal/downshift#inputvalue
-   * @returns {string|undefined}
-   */
-  getInputValue() {
-    const { multiple, formatOption, value } = this.props;
-
-    if (value === undefined) {
-      return undefined;
-    }
-    if (multiple) {
-      return value.map(formatOption).join(", ");
-    }
-
-    return formatOption(value);
   }
 
   /**
@@ -161,7 +120,14 @@ export default class Dropdown extends Component {
       onChange(value);
     }
   };
+  handleOptionClick = value => {
+    const { onClick } = this.props;
 
+    if (onClick) {
+      onClick(value);
+    }
+  };
+  
   /**
    * @param {DownshiftHelpers} downshift
    * @returns {JSX.Element}
@@ -224,7 +190,6 @@ export default class Dropdown extends Component {
     const {
       children,
       defaultValue,
-      disabled,
       formatOption,
       id,
       multiple,
@@ -233,12 +198,7 @@ export default class Dropdown extends Component {
       onClick,
       onFocus,
       options,
-      placeholder,
       renderOption,
-      required,
-      value,
-      variant,
-      error,
       ...otherProps
     } = this.props;
 
@@ -248,7 +208,6 @@ export default class Dropdown extends Component {
      * @see https://github.com/paypal/downshift#getrootprops
      */
     return renderWrapper({
-      disabled,
       children: [this.renderMenu(downshift)],
       ...otherProps
     });

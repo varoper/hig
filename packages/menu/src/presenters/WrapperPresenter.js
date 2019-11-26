@@ -21,7 +21,7 @@ import stylesheet from "./WrapperPresenter.stylesheet";
  * @see https://github.com/paypal/downshift#getrootprops
  */
 export default function WrapperPresenter(props) {
-  const { disabled, children, ...otherProps } = props;
+  const { children, ...otherProps } = props;
   const { className } = otherProps;
 
   return (

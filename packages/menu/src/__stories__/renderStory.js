@@ -8,7 +8,7 @@ export default function renderStory(props) {
 
   return (
     <KnobbedThemeProvider>
-      <DefaultExport {...otherProps}>{children}</DefaultExport>
+      <DefaultExport {...otherProps} optionClick={() => {console.log('hello')}}>{children}</DefaultExport>
     </KnobbedThemeProvider>
   );
 }

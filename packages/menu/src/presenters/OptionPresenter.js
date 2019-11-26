@@ -89,7 +89,7 @@ export default class OptionPresenter extends Component {
 
   render() {
     const { children, selected, ...otherProps } = this.props;
-
+console.log(this.props);
     return (
       <ThemeContext.Consumer>
         {({ metadata }) => {

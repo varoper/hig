@@ -44,6 +44,7 @@ function createOptionRenderer(downshift, renderOption) {
       result = renderOption(option, itemProps);
     } else {
       const optionLabel = option && option.item ? option.item : option;
+// console.log(itemProps);
       result = (
         <OptionPresenter {...itemProps}>
           {formatOption(optionLabel)}
