@@ -19,7 +19,7 @@ function OptionWrapper(props) {
   } = props;
 
   const { handleClick, handleKeyDown } = createButtonEventHandlers(onClick);
-
+console.log(props.onOptionClick);
   return (
     <ThemeContext.Consumer>
       {({ resolvedRoles }) => (

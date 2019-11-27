@@ -120,13 +120,6 @@ export default class Dropdown extends Component {
       onChange(value);
     }
   };
-  handleOptionClick = value => {
-    const { onClick } = this.props;
-
-    if (onClick) {
-      onClick(value);
-    }
-  };
   
   /**
    * @param {DownshiftHelpers} downshift
@@ -145,6 +138,7 @@ export default class Dropdown extends Component {
     const {
       formatOption,
       multiple,
+      onOptionClick,
       options,
       renderOption,
       ...otherProps
@@ -169,6 +163,7 @@ export default class Dropdown extends Component {
       getItemProps,
       highlightedIndex,
       multiple,
+      onOptionClick,
       options,
       renderOption,
       selectedItem,
