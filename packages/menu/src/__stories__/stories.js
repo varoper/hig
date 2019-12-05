@@ -24,7 +24,7 @@ export default [
           item: "Matrix Theme"
         }
       ],
-      onOptionClick: () => { console.log('hello') }
+      // onOptionClick: () => { console.log('hello') }
       // options: ["HIG Light Theme", "HIG Dark Blue Theme", "Matrix Theme"]
     })
   }

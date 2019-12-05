@@ -70,7 +70,7 @@ export default function renderOptions(props) {
     getItemProps = itemProps => itemProps,
     highlightedIndex,
     multiple = false,
-    onOptionClick,
+    // onOptionClick,
     options = [],
     renderOption,
     selectedItem,
@@ -81,7 +81,7 @@ export default function renderOptions(props) {
     getItemProps,
     highlightedIndex,
     multiple,
-    onOptionClick,
+    // onOptionClick,
     selectedItem,
     selectedItems
   };

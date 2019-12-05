@@ -7,7 +7,7 @@ import stylesheet from "./MenuPresenter.stylesheet";
 export default function MenuPresenter(props) {
   const { innerRef, isOpen, children, ...otherProps } = props;
   const { className } = otherProps;
-
+console.log('here');
   return (
     <ThemeContext.Consumer>
       {({ resolvedRoles }) => (
@@ -24,7 +24,7 @@ export default function MenuPresenter(props) {
 }
 
 MenuPresenter.propTypes = {
-  innerRef: PropTypes.func.isRequired,
+  // innerRef: PropTypes.func.isRequired,
   isOpen: PropTypes.bool,
   children: PropTypes.node
 };

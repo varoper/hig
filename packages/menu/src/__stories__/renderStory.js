@@ -4,11 +4,13 @@ import DefaultExport from "../index";
 import getKnobs from "./getKnobs";
 
 export default function renderStory(props) {
-  const { children, ...otherProps } = getKnobs(props);
+  const { ...otherProps } = getKnobs(props);
 
   return (
     <KnobbedThemeProvider>
-      <DefaultExport {...otherProps}>{children}</DefaultExport>
+      <DefaultExport {...otherProps}>
+        <div>hello</div>
+      </DefaultExport>
     </KnobbedThemeProvider>
   );
 }
