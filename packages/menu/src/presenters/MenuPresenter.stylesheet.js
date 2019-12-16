@@ -2,7 +2,7 @@ import constants from "./constants";
 
 export default function stylesheet(props, themeData) {
   return {
-    display: props.isOpen ? "block" : "none",
+    // display: props.isOpen ? "block" : "none",
     position: "absolute",
     width: "100%",
     // maxHeight: constants.menuMaxHeight,
