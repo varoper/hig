@@ -8,9 +8,7 @@ export default function renderStory(props) {
 
   return (
     <KnobbedThemeProvider>
-      <DefaultExport {...otherProps}>
-        <div>hello</div>
-      </DefaultExport>
+      <DefaultExport {...otherProps}></DefaultExport>
     </KnobbedThemeProvider>
   );
 }

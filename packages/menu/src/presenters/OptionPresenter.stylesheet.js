@@ -25,6 +25,12 @@ export default function stylesheet(props, themeData) {
       : null),
     ...(props.disabled
       ? { opacity: themeData["component.disabled.opacity"] }
-      : null)
+      : null),
+    "&:focus": {
+      "& > span": {
+        color: "blue"
+      }
+
+    }
   };
 }

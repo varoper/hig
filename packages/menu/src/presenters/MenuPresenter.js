@@ -7,18 +7,27 @@ import stylesheet from "./MenuPresenter.stylesheet";
 export default function MenuPresenter(props) {
   const { innerRef, isOpen, children, ...otherProps } = props;
   const { className } = otherProps;
-console.log(children);
   return (
     <ThemeContext.Consumer>
-      {({ resolvedRoles }) => (
-        <div
-          {...otherProps}
-          ref={innerRef}
-          className={cx(css(stylesheet(props, resolvedRoles)), className)}
-        >
-          {children}
-        </div>
-      )}
+      {({ resolvedRoles }) => {
+        console.log(props.children);
+        console.log(React.Children.toArray(props.children)[0].type);
+        return(
+          <div
+            {...otherProps}
+            ref={innerRef}
+            aria-activedescendant="hello"
+            aria-expanded={true}
+            role="listbox"
+            onKeyDown={event => {console.log(event.keyCode)}}
+            onClick={event => {console.log(event)}}
+            className={cx(css(stylesheet(props, resolvedRoles)), className)}
+            tabIndex="0"
+          >
+            {children}
+          </div>
+        );
+    }}
     </ThemeContext.Consumer>
   );
 }

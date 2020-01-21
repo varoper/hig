@@ -1,31 +1,15 @@
+import React from "react";
+import Option from "../presenters/OptionPresenter";
+
 export default [
   {
     description: "default",
     getProps: () => ({
-      options: [
-        {
-          item: "HIG Light Theme",
-          subMenu: [
-            {
-              item: "one"
-            },
-            {
-              item: "two"
-            },
-            {
-              item: "three"
-            }
-          ]
-        },
-        {
-          item: "HIG Dark Blue Theme"
-        }, 
-        {
-          item: "Matrix Theme"
-        }
-      ],
-      // onOptionClick: () => { console.log('hello') }
-      // options: ["HIG Light Theme", "HIG Dark Blue Theme", "Matrix Theme"]
+      children: [
+        <Option id="hello">hello</Option>,
+        <Option id="bye">bye</Option>,
+        <Option id="blah">blah</Option>
+      ]
     })
   }
 ];
