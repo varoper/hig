@@ -12,6 +12,18 @@ import renderOptions from "./presenters/renderOptions";
 /** @typedef {import("./presenters/renderOptions").OptionMeta} OptionMeta */
 /** @typedef {import("downshift").ControllerStateAndHelpers} DownshiftHelpers */
 
+function createOptions(children) {
+  return Children.toArray(children).reduce((result, child) => {
+    const { type, key, props = {} } = child;
+
+    if (type === Tab) {
+      result.push({ key, props });
+    }
+
+    return result;
+  }, []);
+};
+
 export default class Dropdown extends Component {
   static propTypes = {
     children: PropTypes.node,
@@ -31,21 +43,9 @@ export default class Dropdown extends Component {
     }
   };
 
-  getBehaviorProps() {
-    const { id, multiple, formatOption, value, defaultValue } = this.props;
-    const valuePropName = multiple ? "selectedItems" : "selectedItem";
-    const defaultValuePropName = multiple
-      ? "initialSelectedItems"
-      : "initialSelectedItem";
-
-    return {
-      id,
-      onChange: this.handleChange,
-      itemToString: formatOption,
-      [valuePropName]: value,
-      [defaultValuePropName]: defaultValue
-    };
-  }
+  state = {
+    activeItem: null
+  };
 
   /**
    * > Why not just pass the `props.onChange` directly to Downshift?
@@ -112,7 +112,7 @@ export default class Dropdown extends Component {
   render() {
     const { children, ...otherProps } = this.props;
     // const Behavior = multiple ? MultiDownshift : Downshift;
-
+    console.log(children);
     return (
       <MenuPresenter {...otherProps}>
         {children}

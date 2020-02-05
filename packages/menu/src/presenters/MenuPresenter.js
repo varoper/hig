@@ -5,17 +5,17 @@ import { ThemeContext } from "@hig/theme-context";
 import stylesheet from "./MenuPresenter.stylesheet";
 
 export default function MenuPresenter(props) {
-  const { innerRef, isOpen, children, ...otherProps } = props;
+  const { children, ...otherProps } = props;
   const { className } = otherProps;
   return (
     <ThemeContext.Consumer>
       {({ resolvedRoles }) => {
-        console.log(props.children);
-        console.log(React.Children.toArray(props.children)[0].type);
+        // console.log(props.children);
+        // console.log(React.Children.toArray(props.children)[0].type);
         return(
           <div
             {...otherProps}
-            ref={innerRef}
+            // ref={innerRef}
             aria-activedescendant="hello"
             aria-expanded={true}
             role="listbox"
@@ -33,7 +33,5 @@ export default function MenuPresenter(props) {
 }
 
 MenuPresenter.propTypes = {
-  // innerRef: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool,
   children: PropTypes.node
 };
