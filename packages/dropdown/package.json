@@ -20,7 +20,7 @@
     "@hig/icons": "^3.0.0",
     "@hig/multi-downshift": "^0.1.1",
     "@hig/input": "^1.2.0",
-    "emotion": "^10.0.0",
+    "emotion": "^10.0.27",
     "downshift": "^3.2.0",
     "prop-types": "^15.7.1",
     "react-lifecycles-compat": "^3.0.4"
